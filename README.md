@@ -1,4 +1,4 @@
-# React-sovellusmalli, ver. 2305 
+# React-sovellusmalli, ver. 2312 
 Autentikointi: React context 
 Muotoilu: Styled-components
 Lomakkeiden validointi: React-hook-form v. 7
@@ -11,7 +11,10 @@ Toimiva palveluliitäntä Flaskiin:
 - Kirjautuminen, Poistuminen, Profiili
 - Sovellusmallin käynnistäminen myös Flaskissä
 
-Build toimii sekä Xamppissa että Flask-Blueprintissa react-sovellusmalli-nimisenä.
+Build toimii sekä Xamppissa että Flask-Blueprintissa react-sovellusmalli-nimisenä. Huom. haluttu package.json
+täytyy kopioida halutun palvelimen mukaisesti joko kehitys-,
+Xampp- tai flask-palvelimen package-*.json-tiedostosta.
+Niissä on määritys build-kansion oikeaksi kohdeosoitteeksi.
 
 Xamppissa se voidaan sijoittaa esim. htdocs/projektit_react-kansioon, jolloin
 package.jsonin homepage-asetus on:
