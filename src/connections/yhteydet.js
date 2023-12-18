@@ -1,18 +1,22 @@
-let { origin,host,hostname,port,protocol,href } = window.location
+let { origin,host,hostname,port,protocol,href,pathname } = window.location
 console.log(`window.location:${origin},${host},${hostname},${port},${protocol},${href}`)
 let url = origin
 let base = '/react-sovellusmalli'
+var hasSubdirectories = pathname.length > 1;
+
 /* Paikallinen react- ja flask-kehityspalvelin */
 // if (port != '' && port == '3000') url = url.replace(port,"5000")
 if (port && port === '3000') {
     console.log(`yhteydet,port:${port}`)
     url = url.replace(port,"5000")
+    if (!hasSubdirectories) window.location.href = origin + base
     }
 /* XAMPP ja flask-kehitys- tai -waitress -palvelin, huom. waitress muuntaa localhostin IP-osoitteeksi. */
 else if (host === 'localhost') {
     console.log(`yhteydet,host:${host}`)
     url = '127.0.0.1:5000'
     console.log("host:"+host+",url:"+url)
+    if (!hasSubdirectories) window.location.href = origin + base
     }
 else {
     //url = process.env.REACT_APP_API_URL

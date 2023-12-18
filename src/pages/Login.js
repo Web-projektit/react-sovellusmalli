@@ -32,14 +32,20 @@ function Login(props) {
   const csrf = () => {
     console.log("csrf,csrfUrl:"+csrfUrl)
     fetch(csrfUrl, {credentials: "include"})
-      .then((response) => {
+      .then(response => {
         //response.headers.forEach((v,i) => console.log(i));
         //console.log(...response.headers);
-        csrfToken.current = response.headers.get("X-CSRFToken");
-        console.log('csrf,csrfToken:',csrfToken.current);
-      })
-      .catch((err) => {
-        console.log(err);
+        console.log('csrf,fetch,response:',response.ok,response.status,response.url,response.redirected)
+        if (response.status === 403) {
+          console.error('Forbidden (403): Access is denied.');
+          }
+        else {
+          csrfToken.current = response.headers.get("X-CSRFToken");
+          console.log('csrf,csrfToken:',csrfToken.current);
+          }
+        })
+      .catch(err => {
+        console.error("csrf-haun yhteysvirhe: ",String(err));
         setError('apiError',{ message:String(err) })
       });
     }  
@@ -49,7 +55,6 @@ function Login(props) {
       console.log("fetchLogin,data:",data)
       const formData = new FormData();
       Object.keys(data).forEach(key => formData.append(key, data[key]));
-
       const searchParams = new URLSearchParams(window.location.search)
       const next = searchParams.get('next') 
       loginFetch(formData,csrfToken.current,next)
@@ -75,7 +80,7 @@ function Login(props) {
           }})
       .catch(e => {
         //e: TypeError: Failed to fetch
-        console.log('fetchLogin,e:',e)
+        console.log('fetchLogin,e:',String(e))
         setError('apiError',{ message:String(e) })
       })
   }
@@ -149,7 +154,7 @@ function Login(props) {
       {errors.password?.type === 'required' && <Error>Anna salasana</Error>} 
       {errors.password?.type === 'tunnusvirhe' && <Error>Väärä käyttäjätunnus tai salasana!</Error> }
       {errors.password?.type === 'palvelinvirhe' && <Error>Kirjautuminen epäonnistui!</Error> }
-       <Button onClick={handleSubmit(data => fetchLogin(data))}>Kirjaudu</Button>
+      <Button onClick={handleSubmit(data => fetchLogin(data))}>Kirjaudu</Button>
       </Form>
       <Link to="/signup">Et ole rekisteröitynyt vielä?</Link>    
     </Card>
