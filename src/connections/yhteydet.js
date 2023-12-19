@@ -9,12 +9,13 @@ var hasSubdirectories = pathname.length > 1;
 if (port && port === '3000') {
     console.log(`yhteydet,port:${port}`)
     url = url.replace(port,"5000")
+    console.log("host:"+host+",url:"+url)
     if (!hasSubdirectories) window.location.href = origin + base
     }
 /* XAMPP ja flask-kehitys- tai -waitress -palvelin, huom. waitress muuntaa localhostin IP-osoitteeksi. */
 else if (host === 'localhost') {
     console.log(`yhteydet,host:${host}`)
-    url = '127.0.0.1:5000'
+    url = 'http://127.0.0.1:5000'
     console.log("host:"+host+",url:"+url)
     if (!hasSubdirectories) window.location.href = origin + base
     }

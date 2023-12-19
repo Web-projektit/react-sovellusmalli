@@ -37,8 +37,8 @@ function Login(props) {
         //console.log(...response.headers);
         console.log('csrf,fetch,response:',response.ok,response.status,response.url,response.redirected)
         if (response.status === 403) {
-          console.error('Virhe 403: Access is denied.');
-          setError('apiError',{ message:"Virhe 403: Access is denied." })
+          console.error('CSRF-tokenin haun virhe 403: Access is denied.');
+          setError('apiError',{ message:"CSRF-tokenin haun virhe 403: Access is denied." })
           }
         else {
           csrfToken.current = response.headers.get("X-CSRFToken");
