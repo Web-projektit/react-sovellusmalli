@@ -14,7 +14,7 @@ function Signup() {
   password.current = watch("password", "");
   const csrfToken = useRef('');
   const signupUrl = baseUrl + "/signup"
-  console.log("Signup renderöidään...")
+  console.log("Signup renderöidään, signupUrl:",signupUrl)
 
   const csrf = () => {
     csrfFetch()

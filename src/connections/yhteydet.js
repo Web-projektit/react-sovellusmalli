@@ -13,7 +13,7 @@ if (port && port === '3000') {
     // if (!hasSubdirectories) window.location.href = origin + base
     }
 /* XAMPP ja flask-kehitys- tai -waitress -palvelin, huom. waitress muuntaa localhostin IP-osoitteeksi. */
-else if (host === 'localhost') {
+else if (host === 'localhost' || host === '127.0.0.1') {
     console.log(`yhteydet,host:${host}`)
     // url = 'http://127.0.0.1:5000'
     url = origin + ':5000'
