@@ -57,6 +57,7 @@ let loginFetch = (formData,csrfToken,next) => {
         method:'POST',
         headers: {"X-CSRFToken": csrfToken},
         credentials:'include',
+        // mode: 'cors',
         body:formData})
     .then(response => {
         console.log('loginFetch,response:',response.ok,response.status,response.url,response.redirected)
